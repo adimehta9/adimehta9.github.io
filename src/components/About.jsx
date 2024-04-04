@@ -7,7 +7,7 @@ import { Tilt } from 'react-tilt';
 import { SectionWrapper } from '../hoc';
 
 const ServiceCard = ({ index, title, icon }) => (
-    <Tilt className="xs:w-[100px]">
+    <Tilt className="xs:w-[95px]">
       <motion.div
         variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
         className="w-full p-[1px] rounded-[20px] shadow-card"
@@ -18,7 +18,7 @@ const ServiceCard = ({ index, title, icon }) => (
             scale:1, 
             speed: 450
           }}
-          className="bg-secondary rounded-[20px] py-3 px-4 min-w-[20px] h-[120px] flex justify-evenly items-center flex-col"
+          className="bg-secondary rounded-[20px] py-3 px-4 min-w-[20px] h-[100px] flex justify-evenly items-center flex-col"
         >
           <img src={icon} alt={title} className="w-12 h-12 object-contain" />
           <h3 className="text-white text-[16px] text-center">{title}</h3>
@@ -50,7 +50,7 @@ const About = () => {
       </motion.p>
 
       <h2 className={`${styles.heroSubText} mt-20 text-white-100`}>Programming Languages</h2>
-      <div className="mt-5 flex flex-wrap gap-10 justify-center">
+      <div className="mt-5 flex flex-wrap gap-8 justify-center">
         {languages.map((service, index) => (
           <ServiceCard key={service.lang} index= {index} {...service} />
         ))}
