@@ -1,7 +1,14 @@
-import React, { Suspense, useRef, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import React, { useRef, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { useSpring, a } from '@react-spring/three';
-import { OrbitControls, Text } from '@react-three/drei';
+import { Text } from '@react-three/drei';
+
+
+const projects = [
+  { id: 1, name: 'Project 1', category: 'AI/ML' },
+  { id: 2, name: 'Project 2', category: 'Frontend' },
+  // Add more projects here
+];
 
 const categories = [
     { id: 1, name: 'AI/ML' },
@@ -16,19 +23,16 @@ const categories = [
 const CarouselButton = ({ position, text, index, onClick }) => {
   const [props, set] = useSpring(() => ({ scale: [1.5, 1.5, 1.5], config: { mass: 5, tension: 350, friction: 40 } }));
   const mesh = useRef();
+  
+  const radiusX = 12; // X radius of the ellipse
+  const radiusZ = 3; // Z radius of the ellipse
+  const speed = 0.5; // Speed of rotation
 
-  const { camera } = useThree();
-
-  useEffect(() => {
-    // Initially align button to face the camera
-    mesh.current.lookAt(camera.position);
-  }, [camera.position]);
-
-  useFrame(({clock}) => {
-    // Continuously adjust button to face the camera
-    mesh.current.lookAt(camera.position);
-
-    mesh.current.rotation.y = Math.sin(clock.getElapsedTime())
+  useFrame(() => {
+    
+    const angle = performance.now() / 1000 * speed + (Math.PI * 2 * (index / categories.length));
+    mesh.current.position.x = Math.sin(angle) * radiusX;
+    mesh.current.position.z = Math.cos(angle) * radiusZ;
 
 
   });
@@ -59,20 +63,24 @@ const CarouselButton = ({ position, text, index, onClick }) => {
 };
 
 const Carousel = () => {
-    const handleCategoryClick = (categoryName) => {
-      // Here, you can use react-router-dom's useHistory to navigate
-      console.log(`Category clicked: ${categoryName}`);
-    };
-    
 
-    const calculatePosition = (index, total, radiusX, radiusZ) => {
-      const theta = (index / total) * Math.PI * 2; 
-      const x = Math.cos(theta) * radiusX;
-      const z = Math.sin(theta) * radiusZ;
-      return [x, 0, z];
-    };
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryClick = (categoryName) => {
+    setSelectedCategory(categoryName);
+    console.log(`Category clicked: ${categoryName}`);
+  };
   
-    return (
+
+  const calculatePosition = (index, total, radiusX, radiusZ) => {
+    const theta = (index / total) * Math.PI * 2; 
+    const x = Math.cos(theta) * radiusX;
+    const z = Math.sin(theta) * radiusZ;
+    return [x, 0, z];
+  };
+
+  return (
+    <>
       <Canvas>
         <ambientLight intensity={0} />
         <pointLight position={[10, 10, 10]} />
@@ -85,11 +93,30 @@ const Carousel = () => {
             onClick={() => handleCategoryClick(category.name)}
         />
         ))}
-        
-
-        
       </Canvas>
+
+      {
+        selectedCategory && (
+          <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <h2>{selectedCategory} Projects</h2>
+            <div>
+              {projects
+                .filter(proects => projects.category === selectedCategory)
+                .map(project => (
+                  <div key={project.id}>
+                    <h3>{project.name}</h3>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ) 
+        
+      }
+
+    </>
+
+
     );
-  };
+};
   
   export default Carousel;
