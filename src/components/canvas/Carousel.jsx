@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { Suspense, useRef, useEffect } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useSpring, a } from '@react-spring/three';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Text } from '@react-three/drei';
 
 const categories = [
     { id: 1, name: 'AI/ML' },
@@ -11,29 +11,51 @@ const categories = [
     // Add more categories here
 ];
 
-function calculatePosition(index, total, radius) {
-    const theta = (index / total) * Math.PI * 2; // Angle for the current item
-    return [Math.cos(theta) * radius, 0, Math.sin(theta) * radius];
-}
 
-const CarouselButton = ({ position, text, onClick }) => {
-    const mesh = useRef();
-  
-    const [props, set] = useSpring(() => ({ scale: [1, 1, 1], config: { mass: 5, tension: 350, friction: 40 } }));
-    
-    return (
-      <a.mesh
-        position={position}
-        ref={mesh}
-        onClick={onClick}
-        onPointerOver={() => set({ scale: [1.5, 1.5, 1.5] })}
-        onPointerOut={() => set({ scale: [1, 1, 1] })}
-        scale={props.scale}>
-        <boxGeometry args={[2, 0.5, 0.2]} />
-        <meshStandardMaterial color='#EEEEEE' />
-        <meshBasicMaterial />
-      </a.mesh>
-    );
+
+const CarouselButton = ({ position, text, index, onClick }) => {
+  const [props, set] = useSpring(() => ({ scale: [1.5, 1.5, 1.5], config: { mass: 5, tension: 350, friction: 40 } }));
+  const mesh = useRef();
+
+  const { camera } = useThree();
+
+  useEffect(() => {
+    // Initially align button to face the camera
+    mesh.current.lookAt(camera.position);
+  }, [camera.position]);
+
+  useFrame(({clock}) => {
+    // Continuously adjust button to face the camera
+    mesh.current.lookAt(camera.position);
+
+    mesh.current.rotation.y = Math.sin(clock.getElapsedTime())
+
+
+  });
+
+
+  return (
+    <a.mesh
+      position={position}
+      ref={mesh}
+      onClick={onClick}
+      onPointerOver={() => set({ scale: [2.5, 2.5, 2.5] })}
+      onPointerOut={() => set({ scale: [1.5, 1.5, 1.5] })}
+      scale={props.scale}>
+      <boxGeometry args={[2, 0.5, 0.2]} />
+      <meshStandardMaterial/>
+      <meshBasicMaterial color={'#DC8686'}/>
+      <Text
+        color='black'
+        anchorX="center" // Center the text horizontally
+        anchorY="middle" // Center the text vertically
+        fontSize={0.2} // Adjust the size of the text
+        position={[0, 0, 0.11]} // Slightly in front of the box
+      >
+        {text}
+      </Text>
+    </a.mesh>
+  );
 };
 
 const Carousel = () => {
@@ -41,24 +63,31 @@ const Carousel = () => {
       // Here, you can use react-router-dom's useHistory to navigate
       console.log(`Category clicked: ${categoryName}`);
     };
+    
+
+    const calculatePosition = (index, total, radiusX, radiusZ) => {
+      const theta = (index / total) * Math.PI * 2; 
+      const x = Math.cos(theta) * radiusX;
+      const z = Math.sin(theta) * radiusZ;
+      return [x, 0, z];
+    };
   
     return (
       <Canvas>
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0} />
         <pointLight position={[10, 10, 10]} />
         {categories.map((category, index) => (
         <CarouselButton
             key={category.id}
-            position={calculatePosition(index, categories.length, 5)} // 5 is the radius of the circle
+            position={calculatePosition(index, categories.length, 12, 3)} // 5 is the radius of the circle
             text={category.name}
+            index={index}
             onClick={() => handleCategoryClick(category.name)}
         />
         ))}
-        <OrbitControls 
-          autoRotate
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}/>
+        
+
+        
       </Canvas>
     );
   };

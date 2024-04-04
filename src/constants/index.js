@@ -1,7 +1,4 @@
 import {
-    mobile,
-    backend,
-    creator,
     python,
     cplus,
     c,
@@ -10,23 +7,36 @@ import {
     mysql,
     html,
     css,
-    web,
-    reactjs,
-    redux,
-    tailwind,
-    nodejs,
-    mongodb,
-    git,
-    figma,
-    docker,
     microsoft,
     manulife,
     titanium,
     carrent,
     jobit,
     tripguide,
-    threejs,
     chsarp,
+
+    // tools
+    pt,
+    tf,
+    spark,
+    kuber,
+    jup,
+    git, 
+    docker,
+    terra,
+    elastic,
+
+    // Frameworks
+    dj,
+    flask,
+    nodejs,
+    sb,
+    fast,
+    hadoop,
+    keras,
+    sk,
+    three,
+
   } from "../assets";
   
   export const navLinks = [
@@ -81,26 +91,85 @@ import {
       title: "CSS",
       icon: css
     }
-  ]
-  
-  const services = [
-    {
-      title: "Web Developer",
-      icon: web,
-    },
-    {
-      title: "React Native Developer",
-      icon: mobile,
-    },
-    {
-      title: "Backend Developer",
-      icon: backend,
-    },
-    {
-      title: "Content Creator",
-      icon: creator,
-    },
   ];
+
+  const tools = [
+    {
+      title: "PyTorch",
+      icon: pt
+    },
+    {
+      title: "TensorFlow",
+      icon: tf
+    },
+    {
+      title: "Spark",
+      icon: spark
+    },
+    {
+      title: "Kubernetes",
+      icon: kuber
+    },
+    {
+      title: "Jupyter Notebooks",
+      icon: jup
+    },
+    {
+      title: "Git",
+      icon: git
+    },
+    {
+      title: "Docker",
+      icon: docker
+    },
+    {
+      title: "Terraform",
+      icon: terra
+    },
+    {
+      title: "Elasticsearch",
+      icon: elastic
+    }
+  ];
+
+  const frameworks = [
+    {
+      title: "Django",
+      icon: dj
+    },
+    {
+      title: "Flask",
+      icon: flask
+    },
+    {
+      title: "Node.js",
+      icon: nodejs
+    },
+    {
+      title: "Spring Boot",
+      icon: sb
+    },
+    {
+      title: "Fast.ai",
+      icon: fast
+    },
+    {
+      title: "Hadoop",
+      icon: hadoop
+    },
+    {
+      title: "Keras",
+      icon: keras
+    },
+    {
+      title: "Scikit-learn",
+      icon: sk
+    },
+    {
+      title: "ThreeJS",
+      icon: three
+    }
+  ]
   
   
   
@@ -227,5 +296,5 @@ import {
     },
   ];
   
-  export { services, languages, experiences, projects };
+  export { languages, tools, frameworks, experiences, projects };
   

@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion';
 import { styles } from '../styles';
-import { services, languages } from '../constants';
+import { languages, tools, frameworks } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 import { Tilt } from 'react-tilt';
 import { SectionWrapper } from '../hoc';
@@ -52,6 +52,20 @@ const About = () => {
       <h2 className={`${styles.heroSubText} mt-20 text-white-100`}>Programming Languages</h2>
       <div className="mt-5 flex flex-wrap gap-8 justify-center">
         {languages.map((service, index) => (
+          <ServiceCard key={service.lang} index= {index} {...service} />
+        ))}
+      </div>
+
+      <h2 className={`${styles.heroSubText} mt-20 text-white-100`}>Tools</h2>
+      <div className="mt-5 flex flex-wrap gap-8 justify-center">
+        {tools.map((service, index) => (
+          <ServiceCard key={service.lang} index= {index} {...service} />
+        ))}
+      </div>
+
+      <h2 className={`${styles.heroSubText} mt-20 text-white-100`}>Frameworks</h2>
+      <div className="mt-5 flex flex-wrap gap-8 justify-center">
+        {frameworks.map((service, index) => (
           <ServiceCard key={service.lang} index= {index} {...service} />
         ))}
       </div>
