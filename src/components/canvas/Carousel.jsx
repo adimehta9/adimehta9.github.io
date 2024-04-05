@@ -114,9 +114,11 @@ const CarouselButton = ({ position, text, index, onClick }) => {
 };
 
 const Carousel = () => {
-
+  const [isAnimating, setIsAnimating] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [contentHeight, setContentHeight] = useState('0px');
+  const [loadingCategory, setLoadingCategory] = useState(null); // New state to hold the category we're loading
+
 
   const contentRef = useRef();
 
@@ -128,8 +130,14 @@ const Carousel = () => {
 
 
   const handleCategoryClick = (categoryName) => {
-    setSelectedCategory(categoryName);
-    console.log(`Category clicked: ${categoryName}`);
+    if(categoryName !== selectedCategory && !isAnimating) { // if different and not current animating
+      setIsAnimating(true);
+      setLoadingCategory(categoryName);
+      setTimeout(() => {
+        setSelectedCategory(categoryName);
+        setIsAnimating(false); // Animation complete
+      }, 300);
+    }
   };
 
   
@@ -137,9 +145,17 @@ const Carousel = () => {
     from: { opacity: 0, maxHeight: '0px' },
     to: {
       opacity: selectedCategory ? 1 : 0,
-      maxHeight: selectedCategory ? contentHeight : '0x'
+      maxHeight: isAnimating ? '0px' : contentHeight
     },
+    onRest: () => {
+      if(isAnimating) {
+        setIsAnimating(false);
+        setSelectedCategory(loadingCategory);
+      }
+    },
+    reverse: isAnimating,
     config: { tension: 210, friction: 20 },
+    
   });
   
 
