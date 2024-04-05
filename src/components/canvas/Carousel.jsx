@@ -1,14 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useSpring, a } from '@react-spring/three';
+import { useSpring as UseSpringThree, a } from '@react-spring/three';
+import { useSpring as UseSpringWeb, animated } from '@react-spring/web';
 import { Text } from '@react-three/drei';
+import { projects } from '../../constants';
+import { Tilt } from 'react-tilt';
+import { github } from '../../assets';
+import { motion } from 'framer-motion';
 
 
-const projects = [
-  { id: 1, name: 'Project 1', category: 'AI/ML' },
-  { id: 2, name: 'Project 2', category: 'Frontend' },
-  // Add more projects here
-];
+
 
 const categories = [
     { id: 1, name: 'AI/ML' },
@@ -20,8 +21,58 @@ const categories = [
 
 
 
+const ProjectCard = ({name, description, tags, image, source_code_link}) => {
+  return (
+    <motion.div>
+      <Tilt
+        options={{
+          max: 45,
+          scale: 1,
+          speed: 450
+        }}
+        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+      >
+        <div className="relative w-full h-[230px]">
+          <img 
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover rounded-2xl"
+          />
+
+          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
+            <div
+              onClick={() => window.open (source_code_link, "_blank")}
+              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer" 
+            >
+              <img 
+                src={github}
+                alt="source code"
+                className="w-1/2 h-1/2 object-contain"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-5">
+          <h3 className="text-white font-bold text-[24px]">{name}</h3>
+          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <p key={tag.name} className={`text-[14px] ${tag.color}`}>
+              #{tag.name}
+            </p>
+          ))}
+        </div>
+      </Tilt>
+    </motion.div>
+  );
+};
+
+
 const CarouselButton = ({ position, text, index, onClick }) => {
-  const [props, set] = useSpring(() => ({ scale: [1.5, 1.5, 1.5], config: { mass: 5, tension: 350, friction: 40 } }));
+  const [props, set] = UseSpringThree(() => ({ scale: [1.5, 1.5, 1.5], config: { mass: 5, tension: 350, friction: 40 } }));
   const mesh = useRef();
   
   const radiusX = 12; // X radius of the ellipse
@@ -65,11 +116,31 @@ const CarouselButton = ({ position, text, index, onClick }) => {
 const Carousel = () => {
 
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [contentHeight, setContentHeight] = useState('0px');
+
+  const contentRef = useRef();
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(`${contentRef.current.scrollHeight}px`);
+    }
+  }, [selectedCategory]);
+
 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
     console.log(`Category clicked: ${categoryName}`);
   };
+
+  
+  const slideDownAnimation = UseSpringWeb({
+    from: { opacity: 0, maxHeight: '0px' },
+    to: {
+      opacity: selectedCategory ? 1 : 0,
+      maxHeight: selectedCategory ? contentHeight : '0x'
+    },
+    config: { tension: 210, friction: 20 },
+  });
   
 
   const calculatePosition = (index, total, radiusX, radiusZ) => {
@@ -86,29 +157,34 @@ const Carousel = () => {
         <pointLight position={[10, 10, 10]} />
         {categories.map((category, index) => (
         <CarouselButton
-            key={category.id}
-            position={calculatePosition(index, categories.length, 12, 3)} // 5 is the radius of the circle
-            text={category.name}
-            index={index}
-            onClick={() => handleCategoryClick(category.name)}
+          key={category.id}
+          position={calculatePosition(index, categories.length, 12, 3)} // 5 is the radius of the circle
+          text={category.name}
+          index={index}
+          onClick={() => handleCategoryClick(category.name)}
         />
         ))}
       </Canvas>
 
       {
         selectedCategory && (
-          <div style={{ marginTop: '20px', textAlign: 'center' }}>
-            <h2>{selectedCategory} Projects</h2>
-            <div>
-              {projects
-                .filter(proects => projects.category === selectedCategory)
-                .map(project => (
-                  <div key={project.id}>
-                    <h3>{project.name}</h3>
-                  </div>
+          <animated.div ref={contentRef} style={{ ...slideDownAnimation, overflow: 'hidden' }}>
+            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <h2>{selectedCategory} Projects</h2>
+              <div className="mt-20 flex flex-wrap gap-7 justify-center">
+                {projects
+                  .filter(projects => projects.category === selectedCategory)
+                  .map((row, index) => (
+                    <ProjectCard 
+                      key={`project-${index}`} 
+                      index={index}
+                      {...row}
+                    />
                 ))}
+              </div>
             </div>
-          </div>
+          </animated.div>
+          
         ) 
         
       }
