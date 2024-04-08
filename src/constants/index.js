@@ -10,10 +10,20 @@ import {
     microsoft,
     manulife,
     titanium,
-    carrent,
-    jobit,
-    tripguide,
     chsarp,
+
+    // Projects
+    flapneat,
+    edumentor,
+    forge,
+    sensor,
+    portfolio,
+    gradeScope,
+    gradeCharts,
+    snake,
+    compiler,
+    assembler,
+    teamSync,
 
     // tools
     pt,
@@ -171,8 +181,6 @@ import {
     }
   ]
   
-  
-  
   const experiences = [
     {
       title: "Machine Learning Engineer",
@@ -228,76 +236,276 @@ import {
     },
   ];
   
-
+  const categories = [
+    { id: 1, name: 'AI/ML' },
+    { id: 2, name: 'Frontend' },
+    { id: 3, name: 'Game Dev' },
+    { id: 4, name: 'Miscellaneous' },
+    // Add more categories here
+  ];  
   
   const projects = [
     {
-      name: "Car Rent",
+      name: "EduMentor",
       category: 'AI/ML',
       description:
-        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+        "AI chatbot tailored to University of Waterloo's courses. Developed through fine-tuning of GPT to help students navigate their academic paths with ease.",
       tags: [
         {
-          name: "react",
+          name: "Pandas",
           color: "blue-text-gradient",
         },
         {
-          name: "mongodb",
+          name: "Flask",
           color: "green-text-gradient",
         },
         {
-          name: "tailwind",
+          name: "Data Science",
           color: "pink-text-gradient",
         },
       ],
-      image: carrent,
-      source_code_link: "https://github.com/",
+      image: edumentor,
+      source_code_link: "https://github.com/adimehta9/EduMentor/",
     },
     {
-      name: "Job IT",
+      name: "Predictive Sensor Insights",
       category: 'AI/ML',
       description:
-        "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+        "ML solution designed to revolutionise sensor data analysis through Time Series Clustering. Predicts missing data at times as well as detects anomalies automatically.",
       tags: [
         {
-          name: "react",
+          name: "TensorFlow",
           color: "blue-text-gradient",
         },
         {
-          name: "restapi",
+          name: "Kafka",
           color: "green-text-gradient",
         },
         {
-          name: "scss",
+          name: "Prometheus",
           color: "pink-text-gradient",
         },
       ],
-      image: jobit,
-      source_code_link: "https://github.com/",
+      image: sensor,
+      source_code_link: "https://github.com/adimehta9/Predictive-Sensor-Insights/",
     },
     {
-      name: "Trip Guide",
-      category: "Frontend",
+      name: "ML Forge",
+      category: 'AI/ML',
       description:
-        "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+        "Dynamic exploration hub featuring diverse ML models and datasets, highlighting my ML journey with different algorithmic solutions to unique challenges.",
       tags: [
         {
-          name: "nextjs",
+          name: "Pandas",
           color: "blue-text-gradient",
         },
         {
-          name: "supabase",
+          name: "BigDataAnalytics",
           color: "green-text-gradient",
         },
         {
-          name: "css",
+          name: "DeepLearning",
           color: "pink-text-gradient",
         },
       ],
-      image: tripguide,
-      source_code_link: "https://github.com/",
+      image: forge,
+      source_code_link: "https://github.com/adimehta9/ML-Forge/",
+    },
+    {
+      name: "FlapNEAT Bird",
+      category: 'AI/ML',
+      description:
+        "Leverage principles from research paper linked in repo, developed AI system for the iconic Flappy Bird. Mimics natural selection to learn and survive.",
+      tags: [
+        {
+          name: "NEATS",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Evolutionary",
+          color: "green-text-gradient",
+        },
+        {
+          name: "NeuralNets",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: flapneat,
+      source_code_link: "https://github.com/adimehta9/FlapNEAT-Bird/",
+    },
+    {
+      name: "Web Portfolio",
+      category: 'Frontend',
+      description:
+        "Interactive 3D webpage powered by Three.js highlighting my journey as a software engineer, whether it be skills, work experience or projects. ",
+      tags: [
+        {
+          name: "React",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "ThreeJS",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Inception",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: portfolio,
+      source_code_link: "https://github.com/adimehta9/adimehta9.github.io/",
+    },
+    {
+      name: "Grade Scope",
+      category: 'Frontend',
+      description:
+        "Kotlin-developed project offering interactive platform where users can input academic courses, grades, timelines, etc, enabling real-time data analytics. ",
+      tags: [
+        {
+          name: "Kotlin",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "DataAnalysis",
+          color: "green-text-gradient",
+        },
+        {
+          name: "RealTime",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: gradeScope,
+      source_code_link: "https://github.com/adimehta9/GradeScope/",
+    },
+    {
+      name: "Grade Sight Charts",
+      category: 'Frontend',
+      description:
+        "Kotlin-developed project offering interactive platform where users can input academic courses, grades, timelines, etc, enabling real-time data analytics. ",
+      tags: [
+        {
+          name: "DataVisual",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Kotlin",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Charts",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: gradeCharts,
+      source_code_link: "https://github.com/adimehta9/GradeSight-Charts/",
+    },
+    {
+      name: "CC3K",
+      category: 'Game Dev',
+      description:
+        "Will Update Soon",
+      tags: [
+        {
+          name: "C++",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Console",
+          color: "green-text-gradient",
+        },
+        {
+          name: "DecoratorPattern",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: gradeCharts,
+      source_code_link: "https://github.com/adimehta9/CC3K-2.0/",
+    },
+    {
+      name: "Infinite Serpent",
+      category: 'Game Dev',
+      description:
+        "Will Update Soon",
+      tags: [
+        {
+          name: "JavaScript",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "GameDev",
+          color: "green-text-gradient",
+        }
+      ],
+      image: snake,
+      source_code_link: "https://github.com/adimehta9/Infinite-Serpent/",
+    },
+    {
+      name: "Team Sync",
+      category: 'Miscellaneous',
+      description:
+        "Dynamic React tool empowering employers to efficiently manage workforce. Leverages Google Maps API for employers to direct employees to desired locations at specific times",
+      tags: [
+        {
+          name: "React",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "GoogleMapsAPI",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Firebase",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: teamSync,
+      source_code_link: "https://github.com/adimehta9/TeamSync/",
+    },
+    {
+      name: "WLP4 Compiler",
+      category: 'Miscellaneous',
+      description:
+        "Will Update Soon",
+      tags: [
+        {
+          name: "JavaScript",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "GameDev",
+          color: "green-text-gradient",
+        },
+        {
+          name: "DecoratorPattern",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: compiler,
+      source_code_link: "https://github.com/adimehta9/WLP4-Compiler",
+    },
+    {
+      name: "MIPS Assembler",
+      category: 'Miscellaneous',
+      description:
+        "Will Update Soon",
+      tags: [
+        {
+          name: "JavaScript",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "GameDev",
+          color: "green-text-gradient",
+        },
+        {
+          name: "DecoratorPattern",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: assembler,
+      source_code_link: "https://github.com/adimehta9/MIPS-Assembler/",
     },
   ];
   
-  export { languages, tools, frameworks, experiences, projects };
+  export { languages, tools, frameworks, experiences, projects, categories };
   

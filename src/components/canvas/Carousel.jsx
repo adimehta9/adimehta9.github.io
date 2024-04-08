@@ -3,23 +3,10 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useSpring as UseSpringThree, a } from '@react-spring/three';
 import { useSpring as UseSpringWeb, animated } from '@react-spring/web';
 import { Text } from '@react-three/drei';
-import { projects } from '../../constants';
+import { projects, categories } from '../../constants';
 import { Tilt } from 'react-tilt';
 import { github } from '../../assets';
 import { motion } from 'framer-motion';
-
-
-
-
-const categories = [
-    { id: 1, name: 'AI/ML' },
-    { id: 2, name: 'Frontend' },
-    { id: 3, name: 'Game Dev' },
-    { id: 4, name: 'Miscellaneous' },
-    // Add more categories here
-];
-
-
 
 const ProjectCard = ({name, description, tags, image, source_code_link}) => {
   return (

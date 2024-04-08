@@ -41,9 +41,19 @@ import microsoft from "./company/microsoft.png";
 import manulife from "./company/manulife.png";
 import titanium from "./company/titanium.png";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+// Project photos
+import flapneat from "./projects/flapneat.png";
+import edumentor from "./projects/edumentor.png";
+import forge from "./projects/forge.png";
+import sensor from "./projects/sensor.png";
+import portfolio from "./projects/portfolio.png";
+import gradeScope from "./projects/gradeScope.png";
+import gradeCharts from "./projects/gradeCharts.png";
+import snake from "./projects/snake.png";
+import compiler from "./projects/compiler.png";
+import assembler from "./projects/assembler.png";
+import teamSync from "./projects/teamSync.png";
+
 
 export {
   // Logos
@@ -90,7 +100,16 @@ export {
   manulife,
   titanium,
 
-  carrent,
-  jobit,
-  tripguide,
+  // Project Photos
+  flapneat,
+  edumentor,
+  sensor,
+  forge,
+  portfolio,
+  gradeScope,
+  gradeCharts,
+  snake,
+  compiler,
+  assembler,
+  teamSync,
 };
