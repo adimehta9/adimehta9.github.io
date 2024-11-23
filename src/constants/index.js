@@ -196,7 +196,7 @@ import {
       ],
     },
     {
-      title: "Full Stack Developer",
+      title: "Data Engineer",
       company_name: "Manulife",
       icon: manulife,
       iconBg: "#E6DEDD",
