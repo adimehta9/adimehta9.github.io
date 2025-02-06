@@ -40,6 +40,7 @@ import three from './tech/three.png';
 import microsoft from "./company/microsoft.png";
 import manulife from "./company/manulife.png";
 import titanium from "./company/titanium.png";
+import adhawk from "./company/adhawk.png";
 
 // Project photos
 import flapneat from "./projects/flapneat.png";
@@ -99,6 +100,7 @@ export {
   microsoft,
   manulife,
   titanium,
+  adhawk,
 
   // Project Photos
   flapneat,

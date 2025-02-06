@@ -10,6 +10,7 @@ import {
     microsoft,
     manulife,
     titanium,
+    adhawk,
     chsarp,
 
     // Projects
@@ -183,7 +184,7 @@ import {
   
   const experiences = [
     {
-      title: "Machine Learning Engineer",
+      title: "Software Engineer",
       company_name: "Microsoft",
       icon: microsoft,
       iconBg: "#E6DEDD",
@@ -196,7 +197,7 @@ import {
       ],
     },
     {
-      title: "Data Engineer",
+      title: "Software Engineer",
       company_name: "Manulife",
       icon: manulife,
       iconBg: "#E6DEDD",
@@ -209,7 +210,7 @@ import {
       ],
     },
     {
-      title: "Data Engineer",
+      title: "Software Engineer",
       company_name: "Manulife",
       icon: manulife,
       iconBg: "#E6DEDD",
@@ -222,16 +223,29 @@ import {
       ],
     },
     {
-      title: "Data Engineer",
+      title: "Software Engineer",
       company_name: "Titanium",
       icon: titanium,
       iconBg: "#E6DEDD",
       date: "Jan 2024 - Apr 2024",
       points: [
-        "Engineered robust serverless data pipelines on Google Cloud with C#, enhancing data flow and processing speed, resulting in a 35% improvement in efficiency.",
-        "Led MySQL to Google Cloud SQL migrations, optimizing storage and access, significantly increasing data security and operational agility.",
-        "Developed and optimized Python-based ETL processes using Google Cloud Dataflow, achieving a 40% decrease in data latency and doubling analytics throughput.",
-        "Designed a scalable, secure data lake in Google Cloud Storage using custom C# connectors, facilitating advanced analytics and ML projects with a 30% boost in processing efficiency.",
+        "Built a cloud-based logging and monitoring system using AWS CloudWatch, reducing system downtime by 45% and improving response time.",
+        "Automated a data migration process from on-prem databases to AWS RDS, cutting manual processing time by 70%.",
+        "Designed a multi-threaded data processing pipeline, increasing throughput by 60%, leveraging Kafka and Python.",
+        "Enhanced authentication security by implementing OAuth 2.0 and JWT tokens, reducing unauthorized access attempts by 30%.",
+      ],
+    },
+    {
+      title: "Software Engineer",
+      company_name: "Adhawk Microsystems",
+      icon: adhawk,
+      iconBg: "#E6DEDD",
+      date: "Jan 2024 - Apr 2024",
+      points: [
+        "Optimized resonance frequency tuning algorithms to enable simultaneous calibration, reducing calibration time by 30% using Python, NumPy and Signal processing techniques",
+        "Enhanced noise detection and dynamic weighting algorithms, reducing tracking errors by 25%",
+        "Created interative UI visualizations, increasing debugging efficiency by 40% using Python, Qt and data visualization libraries",
+        "Redefined calibration algorithms to dynamically adjust based on system frequency, improving algorithm efficiency by 80%",
       ],
     },
   ];
